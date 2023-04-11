@@ -1,4 +1,3 @@
-variable "elasticache" {}
 variable "env" {}
 variable"subnets" {}
 variable "name" {}
