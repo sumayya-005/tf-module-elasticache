@@ -14,6 +14,6 @@ resource "aws_elasticache_parameter_group" "default" {
 }
 
 resource "aws_elasticache_subnet_group" "default" {
-  name       = ""
-  subnet_ids = []
+  name       = "${var.env}-${var.name} -elasticache"
+  subnet_ids = var.subnets
 }
