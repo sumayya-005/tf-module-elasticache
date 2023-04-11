@@ -1,6 +1,5 @@
 resource "aws_elasticache_cluster" "example" {
-  for_each             = var.elasticache
-  cluster_id           = "cluster-example"
+  cluster_id           =
   engine               = "redis"
   node_type            = "cache.m4.large"
   num_cache_nodes      = 1
