@@ -1,32 +1,19 @@
 resource "aws_elasticache_cluster" "example" {
-  cluster_id           =
-  engine               = "redis"
-  node_type            = "cache.m4.large"
-  num_cache_nodes      = 1
-  parameter_group_name = "default.redis3.2"
-  engine_version       = "3.2.10"
+  cluster_id           = "${var.env}-${var.name} -elasticache"
+  engine               =  var.engine
+  node_type            =  var.node_type
+  num_cache_nodes      =  var.num_cache_nodes
+  parameter_group_name = aws_elasticache_parameter_group.default.name
+  engine_version       = var.engine_version
   port                 = 6379
 }
 
-resource "aws_vpc" "foo" {
-  cidr_block = "10.0.0.0/16"
-
-  tags = {
-    Name = "tf-test"
-  }
+resource "aws_elasticache_parameter_group" "default" {
+  family = "redis6.x"
+  name   = "${var.env}-${var.name} -elasticache"
 }
 
-resource "aws_subnet" "foo" {
-  vpc_id            = aws_vpc.foo.id
-  cidr_block        = "10.0.0.0/24"
-  availability_zone = "us-west-2a"
-
-  tags = {
-    Name = "tf-test"
-  }
-}
-
-resource "aws_elasticache_subnet_group" "bar" {
-  name       = "tf-test-cache-subnet"
-  subnet_ids = [aws_subnet.foo.id]
+resource "aws_elasticache_subnet_group" "default" {
+  name       = ""
+  subnet_ids = []
 }
