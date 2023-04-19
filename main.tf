@@ -1,4 +1,4 @@
-resource "aws_elasticache_cluster" "example" {
+resource "aws_elasticache_cluster" "" {
   cluster_id           = "${var.env}-${var.name}-elasticache"
   engine               =  var.engine
   node_type            =  var.node_type
