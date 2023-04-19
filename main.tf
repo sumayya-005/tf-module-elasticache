@@ -1,5 +1,5 @@
 resource "aws_elasticache_cluster" "example" {
-  cluster_id           = "${var.env}-${var.name} -elasticache"
+  cluster_id           = "${var.env}-${var.name}-elasticache"
   engine               =  var.engine
   node_type            =  var.node_type
   num_cache_nodes      =  var.num_cache_nodes
@@ -10,10 +10,10 @@ resource "aws_elasticache_cluster" "example" {
 
 resource "aws_elasticache_parameter_group" "default" {
   family = "redis6.x"
-  name   = "${var.env}-${var.name} -elasticache"
+  name   = "${var.env}-${var.name}-elasticache"
 }
 
 resource "aws_elasticache_subnet_group" "default" {
-  name       = "${var.env}-${var.name} -elasticache"
+  name       = "${var.env}-${var.name}-elasticache"
   subnet_ids = var.subnets
 }
